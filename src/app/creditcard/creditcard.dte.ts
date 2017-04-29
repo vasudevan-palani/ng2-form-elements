@@ -1,11 +1,10 @@
+import { Validator, AbstractControl, NG_VALIDATORS,ValidatorFn } from '@angular/forms';
 import { Directive, forwardRef, Attribute } from '@angular/core';
-import { Validator, AbstractControl, NG_VALIDATORS,FormControl } from '@angular/forms';
 
-
-export function validateCreditCard() {
-  return (c: FormControl) => {
-    let CC_REGEXP = /^[1-9][0-9]+$/i;
-
+function validateCreditCard() {
+  return (c: AbstractControl) => {
+    let CC_REGEXP = /^[1-9][1-9]\d+$/;
+    console.log("here");
     return CC_REGEXP.test(c.value) ? null : {
       validateCC: {
         valid: false
@@ -13,15 +12,21 @@ export function validateCreditCard() {
     };
   };
 }
-
+@Directive({
+    selector: '[creditCardValidator][formControlName],[creditCardValidator][formControl],[creditCardValidator][ngModel]',
+    providers: [
+        { provide: NG_VALIDATORS, useExisting: forwardRef(() => CreditCardValidator), multi: true }
+    ]
+})
 export class CreditCardValidator implements Validator {
-    validator: Function;
+
+    validator: ValidatorFn;
 
     constructor() {
       this.validator = validateCreditCard();
     }
 
-    validate(c: FormControl) {
+    validate(c: AbstractControl) {
       return this.validator(c);
     }
 }

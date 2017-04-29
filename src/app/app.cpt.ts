@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl,FormGroup,FormBuilder } from '@angular/forms';
+import { FormControl,FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { CreditCardValidator } from './creditcard/creditcard.dte';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.cpt.html',
@@ -14,7 +15,7 @@ export class AppComponent {
 
   constructor(private fb:FormBuilder){
     this.ccform = this.fb.group({
-      ccnumber : ['']
+      ccnumber : ['',CreditCardValidator]
     });
   }
 
