@@ -10,7 +10,7 @@
               id="ccnumber" placeholder="credit card" label="Credit Card"
               title="Credit Card Number" formControlName="ccnumber" reset-on-empty>
             </credit-card>
-            <button type="reset" class="btn btn-danger">Reset</button>
+            <button type="button" class="btn btn-danger" (click)="reset()">Reset</button>
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
     </div>

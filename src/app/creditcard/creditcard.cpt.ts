@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, forwardRef, OnChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl, NG_VALIDATORS } from '@angular/forms';
 
-export function createValidateCreditCard() {
+function createValidateCreditCard() {
 
   return function validatecc(c: FormControl) {
     let err = {
@@ -50,6 +50,7 @@ export class CreditCardComponent implements ControlValueAccessor, OnChanges {
   validateFn: Function;
 
   propagateChange = (_: any) => { };
+  propagateTouch = (_: any) => { };
 
   constructor() {
     this.invalid = new EventEmitter();
@@ -60,6 +61,7 @@ export class CreditCardComponent implements ControlValueAccessor, OnChanges {
     if (value !== undefined) {
       this.ccnumber = value;
       this.propagateChange(this.ccnumber);
+      this.propagateTouch(this.ccnumber);
     }
   }
 
@@ -67,7 +69,9 @@ export class CreditCardComponent implements ControlValueAccessor, OnChanges {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() { }
+  registerOnTouched(fn) {
+    this.propagateTouch = fn;
+  }
 
   ngOnChanges(changes) {
     this.validateFn = createValidateCreditCard();
@@ -76,6 +80,8 @@ export class CreditCardComponent implements ControlValueAccessor, OnChanges {
   private _change(event) {
     this.ccnumber = event.target.value;
     this.propagateChange(this.ccnumber);
+    this.propagateTouch(this.ccnumber);
+
   }
 
   validate(c: FormControl) {

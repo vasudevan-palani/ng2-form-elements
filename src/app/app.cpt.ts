@@ -20,5 +20,6 @@ export class AppComponent {
 
   reset(){
     this.ccform.reset();
+    this.ccform.markAsPristine();
   }
 }
