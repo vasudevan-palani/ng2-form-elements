@@ -1,24 +1,20 @@
 <h1>
   {{title}}
 </h1>
-<pre>{{ ccform.controls['ccnumber'].valid }}</pre>
 <div class="row">
-  <div class="col-lg-2"></div>
-  <div class="col-lg-8">
-    <form #ccform="ngForm" (submit)="logVal(ccform.value)">
-      <div class="form-group" [class.has-success]="ccform.controls['ccnumber'].valid"
-        [class.has-error]="!ccform.controls['ccnumber'].valid">
-        <label for="ccnumber.billing">Credit card</label>
-        <credit-card
-            name="ccnumber" id="ccnumber.billing" placeholder="credit card"
-            label="Credit Card" title="Credit Card Number" ngModel>
-        </credit-card>
-        <span class="glyphicon form-control-feedback" aria-hidden="true"
-          [class.glyphicon-ok]="ccform.controls['ccnumber'].valid"
-          [class.glyphicon-remove]="!ccform.controls['ccnumber'].valid"></span>
-      </div>
-      <button type="submit" class="btn btn-success">Submit</button>
-    </form>
-  </div>
-  <div class="col-lg-2"></div>
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <form #ccform="ngForm" (submit)="logVal(ccform.value)">
+            <div class="form-group has-feedback" [class.has-success]="ccform.controls['ccnumber']?.valid && ccform.controls['ccnumber']?.touched"
+            [class.has-error]="!ccform.controls['ccnumber']?.valid && ccform.controls['ccnumber']?.touched" >
+                <label for="ccnumber.billing">Credit card</label>
+                <input type="text" class="form-control" name="ccnumber" id="ccnumber" placeholder="credit card" label="Credit Card" title="Credit Card Number" ngModel validate-cc (blur)="ccBlur(ccform.controls['ccnumber'])"/>
+                <span class="glyphicon form-control-feedback" aria-hidden="true"
+                [class.glyphicon-ok]="ccform.controls['ccnumber']?.valid && ccform.controls['ccnumber']?.touched"
+                [class.glyphicon-remove]="!ccform.controls['ccnumber']?.valid && ccform.controls['ccnumber']?.touched"></span>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+    <div class="col-lg-2"></div>
 </div>

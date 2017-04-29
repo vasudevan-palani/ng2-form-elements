@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.cpt';
 import { CreditCardComponent } from './creditcard/creditcard.cpt';
+import { CreditCardValidator } from './creditcard/creditcard.dte';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreditCardComponent
+    CreditCardComponent,
+    CreditCardValidator
   ],
   imports: [
     BrowserModule,

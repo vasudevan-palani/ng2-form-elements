@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -15,5 +16,12 @@ export class AppComponent {
 
   logVal(value){
     console.log("log : ",value);
+  }
+
+  ccBlur(c):void{
+    if(c.value == undefined || c.value == ""){
+      c.reset();
+    }
+    console.log(c.touched);
   }
 }
