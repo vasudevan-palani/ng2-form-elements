@@ -8,7 +8,7 @@
             <div class="form-group has-feedback" [class.has-success]="ccform.controls['ccnumber']?.valid && ccform.controls['ccnumber']?.dirty"
             [class.has-error]="!ccform.controls['ccnumber']?.valid && ccform.controls['ccnumber']?.dirty" >
                 <label for="ccnumber.billing">Credit card</label>
-                <input type="text" class="form-control" name="ccnumber" id="ccnumber" placeholder="credit card" label="Credit Card" title="Credit Card Number" ngModel validate-cc reset-on-empty/>
+                <input type="text" class="form-control" name="ccnumber" id="ccnumber" placeholder="credit card" label="Credit Card" title="Credit Card Number" ngModel validate-cc reset-on-empty #resetVar = "resetOnEmpty"/>
                 <span class="glyphicon form-control-feedback" aria-hidden="true"
                 [class.glyphicon-ok]="ccform.controls['ccnumber']?.valid && ccform.controls['ccnumber']?.dirty"
                 [class.glyphicon-remove]="!ccform.controls['ccnumber']?.valid && ccform.controls['ccnumber']?.dirty"></span>

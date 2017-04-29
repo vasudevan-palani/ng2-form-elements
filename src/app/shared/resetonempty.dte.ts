@@ -3,6 +3,7 @@ import { NgControl } from '@angular/forms';
 
 @Directive({
     selector: '[reset-on-empty]',
+    exportAs:'resetOnEmpty',
     host :{
       '(keyup)':'_onKeyup()'
     }
