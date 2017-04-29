@@ -19,6 +19,8 @@ export class CreditCardValidator implements Validator {
         }
       };
 
+      console.log("alled");
+
       let cond = new RegExp('^[1-9][0-9]+$');
 
       return cond.test(c.value)?null:err;
