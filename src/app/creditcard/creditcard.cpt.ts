@@ -13,8 +13,6 @@ export function createValidateCreditCard() {
 
     let cond = new RegExp('^[1-9][0-9]+$');
 
-    console.log(c.value);
-
     return cond.test(c.value)?null:err;
   }
 
@@ -24,7 +22,7 @@ export function createValidateCreditCard() {
   selector: 'credit-card',
   templateUrl: 'creditcard.cpt.html',
   styleUrls: ['creditcard.cpt.css'],
-  inputs: ['name', 'id', 'title', 'placeholder', 'label'],
+  inputs: ['name', 'id', 'title', 'placeholder', 'label','form','formControlName'],
   outputs: ['invalid', 'valid'],
   providers: [
     {
@@ -43,6 +41,9 @@ export class CreditCardComponent implements ControlValueAccessor, OnChanges {
 
   invalid: EventEmitter<string>;
   valid: EventEmitter<string>;
+
+  @Input()
+  public form;
 
   private ccnumber: string;
 
@@ -78,7 +79,6 @@ export class CreditCardComponent implements ControlValueAccessor, OnChanges {
   }
 
   validate(c: FormControl) {
-    console.log("validate called");
     return this.validateFn(c);
   }
 

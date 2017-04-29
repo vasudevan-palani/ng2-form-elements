@@ -14,7 +14,11 @@ export class AppComponent {
 
   constructor(private fb:FormBuilder){
     this.ccform = this.fb.group({
-      ccnumber : ['',CreditCardValidator]
+      ccnumber : ['']
     });
+  }
+
+  reset(){
+    this.ccform.reset();
   }
 }

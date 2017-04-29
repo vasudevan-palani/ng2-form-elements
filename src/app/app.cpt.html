@@ -1,18 +1,16 @@
 <h1>
   {{title}}
 </h1>
+<pre><code>{{ccform.value | json}}</code></pre>
 <div class="row">
     <div class="col-lg-2"></div>
     <div class="col-lg-8">
         <form [formGroup]="ccform" (submit)="logVal(ccform.value)">
-            <div class="form-group has-feedback" [class.has-success]="ccform.controls['ccnumber']?.valid && ccform.controls['ccnumber']?.dirty"
-            [class.has-error]="!ccform.controls['ccnumber']?.valid && ccform.controls['ccnumber']?.dirty" >
-                <label for="ccnumber.billing">Credit card</label>
-                <input type="text" class="form-control" name="ccnumber" id="ccnumber" placeholder="credit card" label="Credit Card" title="Credit Card Number" formControlName="ccnumber" reset-on-empty/>
-                <span class="glyphicon form-control-feedback" aria-hidden="true"
-                [class.glyphicon-ok]="ccform.controls['ccnumber']?.valid && ccform.controls['ccnumber']?.dirty"
-                [class.glyphicon-remove]="!ccform.controls['ccnumber']?.valid && ccform.controls['ccnumber']?.dirty"></span>
-            </div>
+            <credit-card name="ccnumber" [form]="ccform"
+              id="ccnumber" placeholder="credit card" label="Credit Card"
+              title="Credit Card Number" formControlName="ccnumber" reset-on-empty>
+            </credit-card>
+            <button type="reset" class="btn btn-danger">Reset</button>
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
     </div>
