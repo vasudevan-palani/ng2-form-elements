@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
-
+import { FormControl,FormGroup,FormBuilder } from '@angular/forms';
+import { CreditCardValidator } from './creditcard/creditcard.dte';
 @Component({
   selector: 'app-root',
   templateUrl: './app.cpt.html',
@@ -8,20 +8,13 @@ import { FormControl } from '@angular/forms';
 })
 export class AppComponent {
   title = 'app works!';
-  model = {name:"Vasu"};
 
-  testInput = {'name':'Vasu'};
 
-  get diagnostic() { return JSON.stringify(this.model); }
+  ccform : FormGroup;
 
-  logVal(value){
-    console.log("log : ",value);
-  }
-
-  ccBlur(c):void{
-    if(c.value == undefined || c.value == ""){
-      c.reset();
-    }
-    console.log(c.touched);
+  constructor(private fb:FormBuilder){
+    this.ccform = this.fb.group({
+      ccnumber : ['',CreditCardValidator]
+    });
   }
 }

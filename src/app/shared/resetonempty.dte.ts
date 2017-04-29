@@ -13,6 +13,7 @@ export class ResetOnEmptyDirective {
     }
 
     _onKeyup(){
+      console.log("here");
       if(this.control.value == undefined || this.control.value == ""){
         console.log("calling reset");
         this.control.reset();

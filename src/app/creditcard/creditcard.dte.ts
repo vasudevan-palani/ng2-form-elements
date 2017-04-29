@@ -1,28 +1,27 @@
 import { Directive, forwardRef, Attribute } from '@angular/core';
-import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
+import { Validator, AbstractControl, NG_VALIDATORS,FormControl } from '@angular/forms';
 
-@Directive({
-    selector: '[validate-cc]',
-    providers: [
-        { provide: NG_VALIDATORS, useExisting: forwardRef(() => CreditCardValidator), multi: true }
-    ]
-})
+
+export function validateCreditCard() {
+  return (c: FormControl) => {
+    let CC_REGEXP = /^[1-9][0-9]+$/i;
+
+    return CC_REGEXP.test(c.value) ? null : {
+      validateCC: {
+        valid: false
+      }
+    };
+  };
+}
+
 export class CreditCardValidator implements Validator {
-    constructor( @Attribute('validateCc') public validateCc: string) {
+    validator: Function;
+
+    constructor() {
+      this.validator = validateCreditCard();
     }
 
-    validate(c: AbstractControl): { [key: string]: any } {
-      let err = {
-        ccError: {
-          given: c.value,
-          message: 'Invalid credit card number'
-        }
-      };
-
-      console.log("alled");
-
-      let cond = new RegExp('^[1-9][0-9]+$');
-
-      return cond.test(c.value)?null:err;
+    validate(c: FormControl) {
+      return this.validator(c);
     }
 }
