@@ -5,7 +5,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl } from '@angular/f
   selector: 'credit-card',
   templateUrl: 'creditcard.cpt.html',
   styleUrls: ['creditcard.cpt.css'],
-  inputs: ['name', 'id', 'title', 'placeholder', 'label','form','formControlName'],
+  inputs: ['name', 'id', 'title', 'placeholder'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

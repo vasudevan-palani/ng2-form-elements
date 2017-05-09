@@ -23,4 +23,22 @@ export class AppComponent {
     this.ccform.reset();
     this.ccform.markAsPristine();
   }
+
+  validAndDirty(form,control){
+    if(form.controls[control]){
+      if(form.controls[control].valid && form.controls[control].dirty){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  invalidAndDirty(form,control){
+    if(form.controls[control]){
+      if(!form.controls[control].valid && form.controls[control].dirty){
+        return true;
+      }
+    }
+    return false;
+  }
 }

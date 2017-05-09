@@ -6,10 +6,14 @@
     <div class="col-lg-2"></div>
     <div class="col-lg-8">
         <form [formGroup]="ccform" (submit)="logVal(ccform.value)">
-            <credit-card name="ccnumber" [form]="ccform"
-              id="ccnumber" placeholder="credit card" label="Credit Card"
-              title="Credit Card Number" formControlName="ccnumber" reset-on-empty>
-            </credit-card>
+            <div class="form-group has-feedback" [class.has-success]="validAndDirty(ccform,'ccnumber')" [class.has-error]="invalidAndDirty(ccform,'ccnumber')">
+              <credit-card name="ccnumber" [form]="ccform"
+                id="ccnumber" placeholder="credit card"
+                title="Credit Card Number" formControlName="ccnumber" reset-on-empty>
+              </credit-card>
+              <span class="glyphicon form-control-feedback" aria-hidden="true" [class.glyphicon-ok]="validAndDirty(ccform,'ccnumber')" [class.glyphicon-remove]="invalidAndDirty(ccform,'ccnumber')"></span>
+            </div>
+
             <button type="button" class="btn btn-danger" (click)="reset()">Reset</button>
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
