@@ -1,8 +1,1 @@
-<div class="form-group has-feedback" [class.has-success]="form.controls[formControlName]?.valid && form.controls[formControlName]?.dirty" [class.has-error]="!form.controls[formControlName]?.valid && form.controls[formControlName]?.dirty">
-
-    <label for="{{id}}">{{label}}</label>
-
-    <input type="text" class="form-control" name="{{name}}" id="{{id}}" [value]="ccnumber" placeholder="{{placeholder}}"  title="{{title}}" (keyup)="_change($event)" />
-
-    <span class="glyphicon form-control-feedback" aria-hidden="true" [class.glyphicon-ok]="form.controls[formControlName]?.valid && form.controls[formControlName]?.dirty" [class.glyphicon-remove]="!form.controls[formControlName]?.valid && form.controls[formControlName]?.dirty"></span>
-</div>
+<input type="text" class="form-control" name="{{name}}" id="{{id}}" [value]="ccnumber" placeholder="{{placeholder}}"  title="{{title}}" (keyup)="_change($event)" />
